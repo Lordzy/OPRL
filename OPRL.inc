@@ -170,6 +170,9 @@ stock OPRL_CheckRCONAdmin(playerid) {
 		OPRL_IsPlayerAdmin[playerid] = true;
 		CallLocalFunction("OnPlayerRconLogin", "i", playerid);
 	}
+	else if(!IsPlayerAdmin(playerid) && OPRL_IsPlayerAdmin[playerid] == true) {
+	    OPRL_IsPlayerAdmin[playerid] = false;
+	}
 	return 1;
 }
 #if defined OPRL_USE_TIMER
