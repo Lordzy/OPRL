@@ -165,7 +165,7 @@ public OnGameModeExit() {
 #endif
 
 
-stock OPRL_CheckRCONAdmin(playerid) {
+static stock OPRL_CheckRCONAdmin(playerid) {
 	if(IsPlayerAdmin(playerid) && OPRL_IsPlayerAdmin[playerid] == false) {
 		OPRL_IsPlayerAdmin[playerid] = true;
 		CallLocalFunction("OnPlayerRconLogin", "i", playerid);
