@@ -50,16 +50,18 @@ ______________________________________________________________________________*/
 
 
 
-
 static
 	bool:OPRL_IsPlayerAdmin[MAX_PLAYERS];
 
 static stock OPRL_CheckRCONAdmin(playerid) {
+
 	if(IsPlayerAdmin(playerid) && OPRL_IsPlayerAdmin[playerid] == false) {
+	
 		OPRL_IsPlayerAdmin[playerid] = true;
 		CallLocalFunction("OnPlayerRconLogin", "i", playerid);
 	}
 	else if(!IsPlayerAdmin(playerid) && OPRL_IsPlayerAdmin[playerid] == true) {
+	
 	    OPRL_IsPlayerAdmin[playerid] = false;
 	}
 	return 1;
@@ -68,7 +70,9 @@ static stock OPRL_CheckRCONAdmin(playerid) {
 
 #if defined FILTERSCRIPT
 public OnFilterScriptInit() {
-	for(new i; i< GetMaxPlayers(); i++) {
+
+	for(new i = 0, j = GetMaxPlayers(); i< j; i++) {
+	
 	    if(IsPlayerAdmin(i)) OPRL_IsPlayerAdmin[i] = true;
 	    else OPRL_IsPlayerAdmin[i] = false;
 	}
@@ -85,7 +89,9 @@ public OnFilterScriptInit() {
 #else
 
 public OnGameModeInit() {
-	for(new i; i< GetMaxPlayers(); i++) {
+
+	for(new i = 0, j = GetMaxPlayers(); i< j; i++) {
+	
 	    if(IsPlayerAdmin(i)) OPRL_IsPlayerAdmin[i] = true;
 	    else OPRL_IsPlayerAdmin[i] = false;
 	}
@@ -131,6 +137,7 @@ public OnGameModeInit() {
 #endif
 
 public OnRconLoginAttempt(ip[], password[], success) {
+
 	if(success) SetTimerEx("OPRL_GetRconPlayer", 1000, false, "s", ip);
 	#if defined OPRL_OnRconLoginAttempt
 		OPRL_OnRconLoginAttempt(ip, password, success);
@@ -153,11 +160,16 @@ forward OPRL_OnRconLoginAttempt(ip[], password[], success);
 forward OPRL_GetRconPlayer(ip[]);
 
 public OPRL_GetRconPlayer(ip[]) {
-	new OPRL_IP[16];
-	for(new i; i< GetMaxPlayers(); i++) {
+
+	new
+		OPRL_IP[16];
+	for(new i = 0, j = GetMaxPlayers(); i< j; i++) {
+	
 		if(IsPlayerAdmin(i) && !OPRL_IsPlayerAdmin[i]) {
+		
 			GetPlayerIp(i, OPRL_IP, sizeof(OPRL_IP));
 			if(!strcmp(ip, OPRL_IP, false)) {
+			
 			    OPRL_CheckRCONAdmin(i);
 			    break;
 			}
@@ -169,3 +181,4 @@ public OPRL_GetRconPlayer(ip[]) {
 forward OnPlayerRconLogin(playerid);
 
 /* Copyright(c) 2014 - "OPRL.inc" */
+
