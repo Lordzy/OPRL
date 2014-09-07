@@ -180,4 +180,4 @@ public OPRL_GetRconPlayer(ip[]) {
 
 forward OnPlayerRconLogin(playerid);
 
-/* Copyright(c) 2014 - "OPRL.inc" */
+/* Copyright(c) 2014 - "OPRL2.inc" */
