@@ -15,7 +15,7 @@ ______________________________________________________________________________*/
 #define FILTERSCRIPT
 
 #include <a_samp>
-#include <OPRL>
+#include <OPRL3>
 
 new
 	bool:RCON2LoggedIn[MAX_PLAYERS],
